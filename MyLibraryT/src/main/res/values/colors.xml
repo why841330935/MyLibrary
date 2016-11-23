@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- common -->
+    <color name="white">#ffffff</color>
+    <color name="green">#4CDC78</color>
+    <color name="black">#000000</color>
+    <color name="f_transparent_1a">#1a000000</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="w_white">#ffffff</color>
+    <!--上下拉组件文字颜色-->
+    <color name="rll_text_color">#666666</color>
+</resources>

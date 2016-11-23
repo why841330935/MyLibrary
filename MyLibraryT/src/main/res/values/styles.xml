@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/w_white</item>
+    </style>
+    <style name="empty_style_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">27px</item>
+    </style>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/img_emptyview"
+        android:layout_marginTop="188px"
+        android:src="@drawable/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_emptyview"
+        android:text="没有数据"
+        android:layout_marginTop="30px"
+        style="@style/empty_style_text"/>
+</com.zhy.autolayout.AutoLinearLayout>
