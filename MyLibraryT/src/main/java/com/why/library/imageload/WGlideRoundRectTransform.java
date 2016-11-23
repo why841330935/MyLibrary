@@ -1,0 +1,78 @@
+package com.why.library.imageload;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+
+/**
+ * Created by Liujc on 2016/4/25.
+ * Email liujiangchuan@hotmail.com
+ */
+public class WGlideRoundRectTransform extends BitmapTransformation
+{
+    private static float rx = 0f,ry = 0f;
+
+    public WGlideRoundRectTransform(Context context, int dp)
+    {
+        super(context);
+        this.rx = Resources.getSystem().getDisplayMetrics().density * dp;
+        this.ry = Resources.getSystem().getDisplayMetrics().density * dp;
+    }
+
+    /**
+     *
+     * @param context
+     * @param radius_x dp
+     * @param radius_y dp
+     */
+    public WGlideRoundRectTransform(Context context, int radius_x, int radius_y)
+    {
+        super(context);
+        this.rx = Resources.getSystem().getDisplayMetrics().density * radius_x;
+        this.ry = Resources.getSystem().getDisplayMetrics().density * radius_y;
+
+    }
+
+    @Override
+    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight)
+    {
+        return roundCrop(pool, toTransform);
+    }
+
+    private  Bitmap roundCrop(BitmapPool pool, Bitmap source)
+    {
+        if (source == null)
+        {
+            return null;
+        }
+
+        Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+        if (result == null)
+        {
+            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(),
+                    Bitmap.Config.ARGB_8888);
+        }
+        Canvas canvas = new Canvas(result);
+        Paint paint = new Paint();
+        paint.setShader(
+                new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
+        paint.setAntiAlias(true);
+        RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
+        canvas.drawRoundRect(rectF, rx, ry, paint);
+
+        return result;
+    }
+
+
+    @Override public String getId()
+    {
+        return getClass().getName() + Math.round(rx) + Math.round(ry);
+    }
+}

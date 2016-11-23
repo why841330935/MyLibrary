@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/empty_view"
+        android:visibility="gone"
+        layout="@layout/emptyview_custom" />
+    <include
+        android:id="@+id/error_view"
+        android:visibility="gone"
+        layout="@layout/errorview_custom"/>
+
+</com.zhy.autolayout.AutoFrameLayout>
