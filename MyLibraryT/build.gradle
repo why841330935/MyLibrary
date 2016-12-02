@@ -3,7 +3,11 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
-
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 24
@@ -13,10 +17,38 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            manifestPlaceholders = [FLOG_DEBUG            : false,
+                                    FLOG_DEBUG_LEVEL      : 2,
+                                    FLOG_OUT_TO_FILE      : false,
+                                    FLOG_OUT_TO_FILE_LEVEL: 5,
+                                    CRASH_CATCH           : false,
+                                    STRICT_MODE           : false,
+                                    LEAK_CANARY           : false]
+
+
+        }
+        debug{
+
+            manifestPlaceholders = [FLOG_DEBUG            : true,
+                                    FLOG_DEBUG_LEVEL      : 2,
+                                    FLOG_OUT_TO_FILE      : false,
+                                    FLOG_OUT_TO_FILE_LEVEL: 5,
+                                    CRASH_CATCH           : false,
+                                    STRICT_MODE           : false,
+                                    LEAK_CANARY           : false]
         }
     }
 }
@@ -41,4 +73,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.0'
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.android.support:multidex:1.0.0'
 }
