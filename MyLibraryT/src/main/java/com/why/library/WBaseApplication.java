@@ -1,10 +1,7 @@
 package com.why.library;
 
 import android.app.Application;
-<<<<<<< HEAD
 import android.support.multidex.MultiDex;
-=======
->>>>>>> origin/master
 
 import com.why.library.helper.WUnCeHandler;
 
@@ -25,10 +22,7 @@ public class WBaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
 //        init();
-<<<<<<< HEAD
         MultiDex.install(this);
-=======
->>>>>>> origin/master
     }
 
     private void init() {
