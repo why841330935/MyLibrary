@@ -1,15 +1,18 @@
 package com.example.admin.myapplication;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.myapplication.fragment.TestFragment;
 import com.example.admin.myapplication.module.TestModule;
 import com.example.admin.myapplication.presenter.TestPresenter;
 import com.why.library.common.banner.Banner;
@@ -27,6 +30,10 @@ public class MainActivity extends WApiCompatActivity<TestPresenter,TestModule> {
     @Bind(R.id.text) TextView text;
     @Bind(R.id.bt) Button bt;
     @Bind(R.id.banner2) Banner banner2;
+
+    public List<Fragment> fragments = new ArrayList<Fragment>();
+    public LinearLayout ll_tab1, ll_tab2, ll_tab3, ll_tab4, ll_tab5;
+    public List<LinearLayout> listLayout = new ArrayList<LinearLayout>();// 点击区域
 
     @Override
     protected int getLayoutResource() {
@@ -58,8 +65,28 @@ public class MainActivity extends WApiCompatActivity<TestPresenter,TestModule> {
             }
         });
         banner2.start();
-
+        test();
     }
+    private void test(){
+        fragments.add(new TestFragment());
+        fragments.add(new TestFragment());
+        fragments.add(new TestFragment());
+        fragments.add(new TestFragment());
+        fragments.add(new TestFragment());
+
+        ll_tab1 = (LinearLayout) findViewById(R.id.ll_tab1);
+        ll_tab2 = (LinearLayout) findViewById(R.id.ll_tab2);
+        ll_tab3 = (LinearLayout) findViewById(R.id.ll_tab3);
+        ll_tab4 = (LinearLayout) findViewById(R.id.ll_tab4);
+        ll_tab5 = (LinearLayout) findViewById(R.id.ll_tab5);
+        listLayout.add(ll_tab1);
+        listLayout.add(ll_tab2);
+        listLayout.add(ll_tab3);
+        listLayout.add(ll_tab4);
+        listLayout.add(ll_tab5);
+        FragmentTabAdapter tabAdapter = new FragmentTabAdapter(this, fragments, R.id.realtabcontent, listLayout);
+    }
+
 
     @Override
     protected void setListeners() {
